@@ -1,0 +1,81 @@
+{
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "45.150.36.106",
+            "port": 2053,
+            "users": [
+              {
+                "id": "c1c64d36-1c6c-4ccc-a615-e9c2474ea9ac",
+                "encryption": "none",
+                "flow": "xtls-rprx-vision"
+              }
+            ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "fingerprint": "chrome",
+          "serverName": "microsoft.com",
+          "publicKey": "JuaHJF4sjHqoP8-_PuvvlT0Y3ifog7jgfHLVcR2r7iY",
+          "shortId": "1682",
+          "spiderX": ""
+        }
+      },
+      "tag": "White-VPN"
+    },
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
+    }
+  ],
+  "routing": {
+    "domainStrategy": "IPIfNonMatch",
+    "rules": [
+      {
+        "type": "field",
+        "domain": [
+          "regexp:.*\\.ru$",
+          "regexp:.*\\.рф$",
+          "regexp:.*\\.su$",
+          "domain:vk.com",
+          "domain:yandex.net",
+          "domain:ok.ru",
+          "domain:mail.ru"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "ip": [
+          "geoip:ru",
+          "geoip:private"
+        ],
+        "outboundTag": "direct"
+      },
+      {
+        "type": "field",
+        "domain": [
+          "geosite:category-ads-all"
+        ],
+        "outboundTag": "block"
+      },
+      {
+        "type": "field",
+        "port": "0-65535",
+        "outboundTag": "White-VPN"
+      }
+    ]
+  }
+}

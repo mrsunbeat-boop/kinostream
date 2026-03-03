@@ -1,0 +1,19 @@
+{
+  "inbounds": [
+    {
+      "port": 54321,
+      "protocol": "shadowsocks",
+      "settings": {
+        "method": "2022-blake3-aes-128-gcm",
+        "password": "y7P9X2L4v8K5m3N6J1h0B4f8Z2q9W5e7",
+        "network": "tcp,udp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "direct"
+    }
+  ]
+}
